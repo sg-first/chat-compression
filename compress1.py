@@ -1,14 +1,18 @@
-f = open('D:/待富者俱乐部聊天记录.txt', 'r', encoding='utf-8')
+f = open('D:/chat/ARMA交流群1.txt', 'r', encoding='utf-8')
 content = f.read()
 content = content.replace('[表情]', '')
 content = content.replace('[图片]', '')
 content = content.split('\n')
 
 def isName(line):
-    return '20' in line and '-' in line and ':' in line and '(' in line and ')' in line
+    bAccount = ('(' in line and ')' in line) or ('<' in line and '>' in line)
+    return '20' in line and '-' in line and ':' in line and bAccount
 
 def cutNumber(line:str):
-    i = line.find('(')
+    if '(' in line and ')' in line:
+        i = line.find('(')
+    else:
+        i = line.find('<')
     return line[:i]
 
 def cutAt(line:str):
@@ -46,5 +50,5 @@ for i in content:
         ret += cache
         cache = ''
 
-f = open('D:/待富者俱乐部聊天记录2.txt', 'w', encoding='utf-8')
+f = open('D:/chat/ARMA交流群2.txt', 'w', encoding='utf-8')
 f.write(ret)
