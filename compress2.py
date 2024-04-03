@@ -1,4 +1,4 @@
-f = open('D:/待富者俱乐部聊天记录2.txt', 'r', encoding='utf-8')
+f = open('D:/chat/卷王研究会聊天记录2.txt', 'r', encoding='utf-8')
 content = f.read()
 content = content.split('\n')
 
@@ -28,8 +28,9 @@ for i in content:
         cache = ''
         # 处理名字
         name = cutTime(i)
-        cache = name + '：'
-        bLastName = True
+        if name == '幼儿园（黎恩）看到请叫我赶作业':
+            cache = name + '：'
+            bLastName = True
     elif cache != '' and bLastName:  # 正文
         if i != '':
             print(i)
@@ -42,5 +43,5 @@ for i in content:
         ret += cache
         cache = ''
 
-f = open('D:/待富者俱乐部聊天记录3.txt', 'w', encoding='utf-8')
+f = open('D:/chat/卷王研究会聊天记录2黎恩.txt', 'w', encoding='utf-8')
 f.write(ret)
